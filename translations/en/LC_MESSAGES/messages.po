@@ -1,0 +1,89 @@
+# English translations for PROJECT.
+# Copyright (C) 2016 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2016.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-02-05 17:41+0200\n"
+"PO-Revision-Date: 2016-02-05 17:26+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.2.0\n"
+
+#: templates/about.html:3
+msgid "Par"
+msgstr "About"
+
+#: templates/about.html:6
+msgid "Par \"Izej ārā\""
+msgstr "About \"Go out\""
+
+#: templates/about.html:6
+msgid "uz sākumu"
+msgstr "to events"
+
+#: templates/about.html:8
+msgid ""
+"\"Izej ārā\" apkopo mērķtiecīgi atlasītu Facebook profilu\n"
+"        pasākumu(event) ziņas ar domu informēt cilvēkus par kultūras\n"
+"        un izklaides iespējām."
+msgstr ""
+"\"Go out\" collects events from selected Facebook profiles to inform "
+"people about culture and entertainment options"
+
+#: templates/about.html:13
+#, fuzzy, python-format
+msgid ""
+"\"Izej ārā\" saturs ir tieši atkarīgs no attiecīgo\n"
+"        facebook profilu aktivitātes, un tas tiek\n"
+"        atjaunots vairākas reizes dienā. Izveidotā sistēma darbojas\n"
+"        autonomi, tāpēc negarantē 99&#37; informācijas precizitāti.\n"
+"        Pirms došanās uz pasākumu iesakām uzzināt vairāk\n"
+"        pie paša pasākuma autoriem."
+msgstr ""
+"The content of \"Go out\" is dependent on the respective Facebook "
+"profile's activity and it is updated multiple times a day. The system "
+"works autonomously and doesn't guarantee 99&#37; precision of the served "
+"information. Before going to the event, we suggest to check the event on "
+"the author's page"
+
+#: templates/about.html:20
+msgid "Ieteikumu vai jautājumu gadījumā rakstīt uz"
+msgstr "If you have any suggestions or questions, please write to"
+
+#: templates/about.html:21
+msgid "Atlasītajā sarakstā ietilpst"
+msgstr "The selected list contains"
+
+#: templates/base.html:9 templates/index.html:4
+msgid "Izej ārā!"
+msgstr "Go out!"
+
+#: templates/base.html:10
+msgid ""
+"izej ārā apkopo mērķtiecīgi atlasītu Facebook profilu pasākumu ziņas ar "
+"domu informēt cilvēkus par kultūras un izklaides iespējām"
+msgstr ""
+"go out collects events from selected Facebook profiles to inform people "
+"about culture and entertainment options"
+
+#: templates/base.html:24
+msgid "radīja"
+msgstr "created by"
+
+#: templates/index.html:4
+msgid "par šo lapu"
+msgstr "about"
+
+#: templates/index.html:15
+msgid "vairāk informācijas"
+msgstr "more information"

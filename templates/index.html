@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ _('Izej ārā!') }} <a href="{{ url_for('about') }}" class="head-link">{{ _('par šo lapu') }}</a></h1>
+    {% for g in events|groupby('date') %}
+        <h3 class="date">{{ g.grouper|date_format|capitalize }}</h3>
+        {% for i in g.list %}
+            <div class="event">
+                <div class="location">{{ i.location }}</div>
+                <div class="title">{{ i.name }}</div>
+                <p class="description">
+                    <img class="picture" src="{{ i.picture_url }}" alt="{{ i.name }}" width="50" />
+                    {{ i.description|truncate() }}
+                </p>
+                <a href="http://www.facebook.com/events/{{ i.event_id }}/" target="_blank" class="link">{{ _('vairāk informācijas') }}</a>
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

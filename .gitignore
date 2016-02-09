@@ -1,0 +1,7 @@
+settings_local.py
+fabfile.py
+*.pyc
+*.DS_Store
+*.db
+env/
+temp_events/

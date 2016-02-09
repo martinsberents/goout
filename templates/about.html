@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %} | {{ _('Par') }}{% endblock %}
+
+{% block content %}
+    <h1>{{ _('Par "Izej ārā"') }} <a href="{{ url_for('index') }}" class="head-link">{{ _('uz sākumu') }}</a></h1>
+    <p class="first-paragraph">
+        {{ _('"Izej ārā" apkopo mērķtiecīgi atlasītu Facebook profilu
+        pasākumu(event) ziņas ar domu informēt cilvēkus par kultūras
+        un izklaides iespējām.') }}
+    </p>
+    <p>
+        {{ _('"Izej ārā" saturs ir tieši atkarīgs no attiecīgo
+        facebook profilu aktivitātes, un tas tiek
+        atjaunots vairākas reizes dienā. Izveidotā sistēma darbojas
+        autonomi, tāpēc negarantē 99&#37; informācijas precizitāti.
+        Pirms došanās uz pasākumu iesakām uzzināt vairāk
+        pie paša pasākuma autoriem.')}}
+    </p>
+    <p>{{ _('Ieteikumu vai jautājumu gadījumā rakstīt uz') }} <strong>we@mabeworks.com</strong></p>
+    <p>{{ _('Atlasītajā sarakstā ietilpst') }}:</p>
+    <ul class="profiles">
+        {% for p in profiles %}
+            <li>{{ p.name }}<strong>&nbsp;/&nbsp;</strong></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
