@@ -43,8 +43,6 @@ def update_events():
                         db_session.add(e)
                         db_session.commit()
                         print u"added\n %s \n %s \n %s \n" % (e.name, e.start_time, e.location)
-            else:
-                print "No data found"
         except Exception, e:
             print u"Exception: %s" % e
 
