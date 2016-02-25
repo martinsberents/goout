@@ -3,10 +3,12 @@ from flask.ext.script import Manager
 from database import db_session
 from models import Event
 import requests
+from requests.packages import urllib3
 import datetime
 from events import app
 import settings
 
+urllib3.disable_warnings()
 manager = Manager(app)
 
 @manager.command
