@@ -15,11 +15,11 @@ manager = Manager(app)
 def update_events():
     fields = "fields=picture.type(square),description,name,start_time,is_date_only,location"
     access_token = "%s|%s" % (settings.CLIENT_ID, settings.CLIENT_SECRET)
+    counter = 0
     for p in settings.PROFILES:
         url = "https://graph.facebook.com/%s/events?%s&access_token=%s" % (p['id'], fields, access_token)
         r = requests.get(url).json()
         try:
-            print "============ checking %s" % p['name']
             if r.get('data'):
                 for i in r['data']:
                     e = Event.query.filter(Event.event_id == int(i["id"])).first()
@@ -42,11 +42,13 @@ def update_events():
                             )
                         db_session.add(e)
                         db_session.commit()
-                        print u"added\n %s \n %s \n %s \n" % (e.name, e.start_time, e.location)
+                        counter += 1
+                        print u"%s added:\n %s \n %s \n %s \n" % (p['name'], e.name, e.start_time, e.location)
         except Exception, e:
             print u"Exception: %s" % e
 
-    print "======================= >>>>>>>>>>>>> db updated %s \n\n" % datetime.datetime.now()
+    if counter > 0:
+        print "======================= >>>>>>>>>>>>> db updated %s \n\n" % datetime.datetime.now()
 
 if __name__ == '__main__':
     manager.run()
