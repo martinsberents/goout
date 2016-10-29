@@ -19,11 +19,16 @@ def shutdown_session(exception=None):
 def date_format(value, format="EEEE d. MMMM yyyy"):
     return format_date(value, format)
 
-
 @app.route('/')
 def index():
-    today = datetime.date.today()
-    events = Event.query.filter(Event.start_time >= today).order_by(Event.start_time)
+    today = datetime.datetime.today()
+    start_time = today.date()
+
+    if today.hour <= 5:
+        margin = datetime.timedelta(days=-1)
+        start_time = start_time + margin
+
+    events = Event.query.filter(Event.start_time >= start_time).order_by(Event.start_time)
     return render_template('index.html', events=events)
 
 @app.route('/about')
