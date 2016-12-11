@@ -18,7 +18,12 @@ def update_events():
     counter = 0
     for p in settings.PROFILES:
         url = "https://graph.facebook.com/%s/events?%s&access_token=%s" % (p['id'], fields, access_token)
-        r = requests.get(url).json()
+        try:
+            r = requests.get(url).json()
+        except Exception, e:
+            print u".json() Exception: %s" % e
+            continue
+
         try:
             if r.get('data'):
                 for i in r['data']:
