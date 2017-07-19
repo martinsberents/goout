@@ -28,7 +28,7 @@ def update_events():
             continue
 
         try:
-            if r.get('data'):
+            if 'data' in r:
                 for i in r['data']:
                     e = Event.query.filter(Event.event_id == int(i["id"])).first()
 
@@ -41,9 +41,9 @@ def update_events():
                                 name            = i["name"],
                                 start_time      = start_time,
                                 date            = start_time.date(),
-                                location        = i["location"] if i.get('location') else u"<nav norādīts>",
+                                location        = i["location"] if 'location' in i else u"<nav norādīts>",
                                 is_date_only    = False,
-                                description     = i["description"] if i.get('description') else "",
+                                description     = i["description"] if 'description' in i else "",
                                 picture_url     = i["picture"]["data"]["url"]
                             )
                         db_session.add(e)
