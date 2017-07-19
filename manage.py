@@ -24,7 +24,7 @@ def update_events():
         try:
             r = requests.get(url).json()
 
-            if 'error' in r:
+            if 'error' in r and r['error']['code'] != 100:
                 print r['error']
                 facebook_api_error_list.append(r['error'])
         except Exception, e:
