@@ -20,14 +20,18 @@ def update_events():
         url = "https://graph.facebook.com/%s/events?%s&access_token=%s" % (p['id'], fields, access_token)
         try:
             r = requests.get(url).json()
+
+            if 'error' in r:
+                print r['error']
         except Exception, e:
-            print u".json() Exception: %s" % e
+            print u"requests lib exception: %s" % e
             continue
 
         try:
             if r.get('data'):
                 for i in r['data']:
                     e = Event.query.filter(Event.event_id == int(i["id"])).first()
+
                     if e == None:
                         time = i["start_time"].split('T')[0]
                         start_time = datetime.datetime.strptime(time, "%Y-%m-%d")
