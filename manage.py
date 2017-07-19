@@ -7,6 +7,7 @@ from requests.packages import urllib3
 import datetime
 from events import app
 import settings
+from mail import send_mail
 
 urllib3.disable_warnings()
 manager = Manager(app)
@@ -16,6 +17,8 @@ def update_events():
     fields = "fields=picture.type(square),description,name,start_time,location"
     access_token = "%s|%s" % (settings.CLIENT_ID, settings.CLIENT_SECRET)
     counter = 0
+    facebook_api_error_list = []
+
     for p in settings.PROFILES:
         url = "https://graph.facebook.com/%s/events?%s&access_token=%s" % (p['id'], fields, access_token)
         try:
@@ -23,6 +26,7 @@ def update_events():
 
             if 'error' in r:
                 print r['error']
+                facebook_api_error_list.append(r['error'])
         except Exception, e:
             print u"requests lib exception: %s" % e
             continue
@@ -55,6 +59,11 @@ def update_events():
 
     if counter > 0:
         print "======================= >>>>>>>>>>>>> db updated %s \n\n" % datetime.datetime.now()
+
+    if len(facebook_api_error_list) > 0 and settings.FACEBOOK_API_ERROR_REPORT_ENABLED:
+        facebook_api_error_string = '\n\n'.join(str(item) for item in facebook_api_error_list)
+        message = 'Subject: Facebook API errors \n\n %s' % facebook_api_error_string
+        send_mail(settings.EMAIL_ADDRESS, settings.ADMINS, message)
 
 if __name__ == '__main__':
     manager.run()
