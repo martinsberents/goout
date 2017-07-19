@@ -13,7 +13,7 @@ manager = Manager(app)
 
 @manager.command
 def update_events():
-    fields = "fields=picture.type(square),description,name,start_time,is_date_only,location"
+    fields = "fields=picture.type(square),description,name,start_time,location"
     access_token = "%s|%s" % (settings.CLIENT_ID, settings.CLIENT_SECRET)
     counter = 0
     for p in settings.PROFILES:
@@ -29,11 +29,8 @@ def update_events():
                 for i in r['data']:
                     e = Event.query.filter(Event.event_id == int(i["id"])).first()
                     if e == None:
-                        if i["is_date_only"]:
-                            start_time = datetime.datetime.strptime(i["start_time"], "%Y-%m-%d")
-                        else:
-                            time = i["start_time"].split('T')[0]
-                            start_time = datetime.datetime.strptime(time, "%Y-%m-%d")
+                        time = i["start_time"].split('T')[0]
+                        start_time = datetime.datetime.strptime(time, "%Y-%m-%d")
 
                         e = Event(
                                 event_id        = i["id"],
@@ -41,7 +38,7 @@ def update_events():
                                 start_time      = start_time,
                                 date            = start_time.date(),
                                 location        = i["location"] if i.get('location') else u"<nav norādīts>",
-                                is_date_only    = i["is_date_only"],
+                                is_date_only    = False,
                                 description     = i["description"] if i.get('description') else "",
                                 picture_url     = i["picture"]["data"]["url"]
                             )
