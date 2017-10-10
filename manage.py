@@ -14,7 +14,7 @@ manager = Manager(app)
 
 @manager.command
 def update_events():
-    fields = "fields=picture.type(square),description,name,start_time,location"
+    fields = "fields=picture.type(square),description,name,start_time,place,owner"
     access_token = "%s|%s" % (settings.CLIENT_ID, settings.CLIENT_SECRET)
     counter = 0
     facebook_api_error_list = []
@@ -40,12 +40,19 @@ def update_events():
                         time = i["start_time"].split('T')[0]
                         start_time = datetime.datetime.strptime(time, "%Y-%m-%d")
 
+                        if "place" in i:
+                            location = i["place"]["name"]
+                        elif "owner" in i:
+                            location = i["owner"]["name"]
+                        else:
+                            location = u"<nav norādīts>"
+
                         e = Event(
                                 event_id        = i["id"],
                                 name            = i["name"],
                                 start_time      = start_time,
                                 date            = start_time.date(),
-                                location        = i["location"] if 'location' in i else u"<nav norādīts>",
+                                location        = location,
                                 is_date_only    = False,
                                 description     = i["description"] if 'description' in i else "",
                                 picture_url     = i["picture"]["data"]["url"]
