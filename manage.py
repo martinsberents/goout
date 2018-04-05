@@ -14,7 +14,7 @@ manager = Manager(app)
 
 @manager.command
 def update_events():
-    fields = "fields=cover,description,name,start_time,place,owner"
+    fields = "fields=description,name,start_time,place,owner"
     access_token = "%s|%s" % (settings.CLIENT_ID, settings.CLIENT_SECRET)
     counter = 0
     facebook_api_error_list = []
@@ -54,8 +54,7 @@ def update_events():
                                 date            = start_time.date(),
                                 location        = location,
                                 is_date_only    = False,
-                                description     = i["description"] if 'description' in i else "",
-                                picture_url     = i["cover"]["source"]
+                                description     = i["description"] if 'description' in i else ""
                             )
                         db_session.add(e)
                         db_session.commit()
