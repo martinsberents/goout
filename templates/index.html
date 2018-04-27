@@ -2,6 +2,15 @@
 
 {% block content %}
     <h1>{{ _('Izej ārā!') }} <a href="{{ url_for('about') }}" class="head-link">{{ _('par šo lapu') }}</a></h1>
+    <h3 class="date">Paziņojums</h3>
+    <div>
+        <p class="description">
+            Saistībā ar Facebook datu nedienām, pieeja pasākumu informācijai "Izej ārā" sistēmai pagaidām ir liegta.
+        </p>
+        <p>Varbūt, kādu dienu šeit atkal varēs redzēt saturu ar noderīgāku informāciju.</p>
+        <p>Paldies, ka izmantojat "Izej arā"!</p>
+        <a href="https://duckduckgo.com/?q=facebook+data+scandal&ia=news" target="_blank" class="link">{{ _('vairāk informācijas') }}</a>
+    </div>
     {% for g in events|groupby('date') %}
         <h3 class="date">{{ g.grouper|date_format|capitalize }}</h3>
         {% for i in g.list %}

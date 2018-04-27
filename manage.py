@@ -14,7 +14,7 @@ manager = Manager(app)
 
 @manager.command
 def update_events():
-    fields = "fields=description,name,start_time,place,owner"
+    fields = "fields=description,name,start_time,place"
     access_token = "%s|%s" % (settings.CLIENT_ID, settings.CLIENT_SECRET)
     counter = 0
     facebook_api_error_list = []
@@ -42,8 +42,6 @@ def update_events():
 
                         if "place" in i:
                             location = i["place"]["name"]
-                        elif "owner" in i:
-                            location = i["owner"]["name"]
                         else:
                             location = u"<nav norādīts>"
 
